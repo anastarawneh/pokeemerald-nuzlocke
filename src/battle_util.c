@@ -550,7 +550,7 @@ void HandleAction_WatchesCarefully(void)
 void HandleAction_SafariZoneBallThrow(void)
 {
     if (!IsMonShiny(&gEnemyParty[0])) {
-        if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()])) {
+        if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]) && !(gMain.heldKeys & R_BUTTON)) {
             gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
             gBattle_BG0_X = 0;
             gBattle_BG0_Y = 0;
@@ -558,7 +558,7 @@ void HandleAction_SafariZoneBallThrow(void)
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
             return;
         }
-        else if (FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) {
+        else if (FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT) && !(gMain.heldKeys & R_BUTTON)) {
             gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
             gBattle_BG0_X = 0;
             gBattle_BG0_Y = 0;

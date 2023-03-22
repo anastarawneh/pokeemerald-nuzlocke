@@ -944,7 +944,7 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
-    if (!IsMonShiny(&gEnemyParty[0])) {
+    if (!IsMonShiny(&gEnemyParty[0]) && !(gMain.heldKeys & R_BUTTON)) {
         if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]))
         {
             DisplayItemMessage(taskId, FONT_NORMAL, gText_AlreadyEncountered, CloseItemMessage);
