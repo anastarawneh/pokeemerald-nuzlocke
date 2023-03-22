@@ -47,6 +47,9 @@
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
 
+#include "data/nuzlocke.h"
+#include "pokedex.h"
+
 enum {
     TRANSITION_TYPE_NORMAL,
     TRANSITION_TYPE_CAVE,
@@ -612,6 +615,9 @@ static void CB2_EndWildBattle(void)
         SetMainCallback2(CB2_ReturnToField);
         gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
     }
+    
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) && !((FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT))))
+        FlagSet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]);
 }
 
 static void CB2_EndScriptedWildBattle(void)

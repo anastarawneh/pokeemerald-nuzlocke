@@ -42,6 +42,9 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 
+#include "data/nuzlocke.h"
+#include "pokedex.h"
+
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
 static void Task_CallItemUseOnFieldCallback(u8);
@@ -941,6 +944,17 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
+    if (!IsMonShiny(&gEnemyParty[0])) {
+        if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]))
+        {
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_AlreadyEncountered, CloseItemMessage);
+            return;
+        }
+        else if (FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) {
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_DupeEncounter, CloseItemMessage);
+            return;
+        }
+    }
     if (IsPlayerPartyAndPokemonStorageFull() == FALSE) // have room for mon?
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);

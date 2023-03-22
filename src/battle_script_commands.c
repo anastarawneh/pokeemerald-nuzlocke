@@ -52,6 +52,8 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 
+#include "data/nuzlocke.h"
+
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
 #define DEFENDER_IS_PROTECTED ((gProtectStructs[gBattlerTarget].protected) && (gBattleMoves[gCurrentMove].flags & FLAG_PROTECT_AFFECTED))
@@ -9905,6 +9907,7 @@ static void Cmd_handleballthrow(void)
 
         if (odds > 254) // mon caught
         {
+            FlagSet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]);
             BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
@@ -9932,6 +9935,7 @@ static void Cmd_handleballthrow(void)
 
             if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above
             {
+                FlagSet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]);
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 

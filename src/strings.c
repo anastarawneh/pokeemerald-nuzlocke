@@ -1819,3 +1819,6 @@ const u8 gText_Answer[] = _("ANSWER");
 const u8 gText_PokeBalls[] = _("POKé BALLS");
 const u8 gText_Berry[] = _("BERRY");
 const u8 gText_Berries[] = _("BERRIES");
+
+const u8 gText_AlreadyEncountered[] = _("You already had this route's encounter!{PAUSE_UNTIL_PRESS}");
+const u8 gText_DupeEncounter[] = _("This is a duplicate encounter!{PAUSE_UNTIL_PRESS}");
