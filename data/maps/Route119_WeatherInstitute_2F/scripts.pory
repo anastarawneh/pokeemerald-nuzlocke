@@ -1,33 +1,32 @@
-NewReceiveCastformScript::
-	msgbox Route119_WeatherInstitute_2F_Text_ThanksPleaseTakePokemon
-	goto_if_set FLAG_COUNT_GIFTS_AS_ENCOUNTERS, NewReceiveCastformScript_4
-NewReceiveCastformScript_3:
-	setvar VAR_TEMP_1, SPECIES_CASTFORM
-	givemon SPECIES_CASTFORM, 25, ITEM_MYSTIC_WATER
-	goto_if_set FLAG_COUNT_GIFTS_AS_ENCOUNTERS, NewReceiveCastformScript_8
-NewReceiveCastformScript_7:
-	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty
-	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC
-	goto Common_EventScript_NoMoreRoomForPokemon
-NewReceiveCastformScript_1:
-	end
+script NewReceiveCastformScript {
+    msgbox(Route119_WeatherInstitute_2F_Text_ThanksPleaseTakePokemon)
+    if (flag(FLAG_COUNT_GIFTS_AS_ENCOUNTERS) && flag(FLAG_ENCOUNTERED_ROUTE_119)) {
+        msgbox(CannotGiftCastformText)
+        playfanfare(MUS_OBTAIN_ITEM)
+        giveitem(ITEM_MYSTIC_WATER)
+        goto(Route119_WeatherInstitute_2F_EventScript_ExplainCastform)
+    } else {
+        setvar(VAR_TEMP_1, SPECIES_CASTFORM)
+        givemon(SPECIES_CASTFORM, 25, ITEM_MYSTIC_WATER)
+        if (flag(FLAG_COUNT_GIFTS_AS_ENCOUNTERS)) {
+            setflag(FLAG_ENCOUNTERED_ROUTE_119)
+        }
+        goto_if_eq(VAR_RESULT, MON_GIVEN_TO_PARTY, Route119_WeatherInstitute_2F_EventScript_ReceiveCastformParty)
+        goto_if_eq(VAR_RESULT, MON_GIVEN_TO_PC, Route119_WeatherInstitute_2F_EventScript_ReceiveCastformPC)
+        goto(Common_EventScript_NoMoreRoomForPokemon)
+    }
+    end
+}
 
-NewReceiveCastformScript_2:
-	msgbox CannotGiftCastformText
-	playfanfare MUS_OBTAIN_ITEM
-	giveitem ITEM_MYSTIC_WATER
-	goto Route119_WeatherInstitute_2F_EventScript_ExplainCastform
-	goto NewReceiveCastformScript_1
+text CannotGiftCastformText {
+    format(
+        "...\p"
+        "I'm sorry, it looks like you already had your encounter on this route.\p"
+        "However, as we still want to thank you, you can still have the MYSTIC WATER it was holding!"
+    )
+}
 
-NewReceiveCastformScript_4:
-	goto_if_set FLAG_ENCOUNTERED_ROUTE_119, NewReceiveCastformScript_2
-	goto NewReceiveCastformScript_3
-
-NewReceiveCastformScript_8:
-	setflag FLAG_ENCOUNTERED_ROUTE_119
-	goto NewReceiveCastformScript_7
-
-
+raw `
 .set LOCALID_GRUNT_1, 1
 .set LOCALID_GRUNT_2, 2
 .set LOCALID_SHELLY, 3
@@ -361,10 +360,5 @@ Route119_WeatherInstitute_2F_Text_NoAbnormalWeather:
 	.string "The occasional rainfall is a blessing,\n"
 	.string "really.$"
 
-CannotGiftCastformText::
-	.string "...\p"
-	.string "I'm sorry, it looks like you already had\n"
-	.string "your encounter on this route.\p"
-	.string "However, as we still want to thank you,\n"
-	.string "you can still have the MYSTIC WATER it\l"
-	.string "was holding!$"
+
+`
