@@ -34,6 +34,9 @@
 #include "constants/rgb.h"
 #include "constants/items.h"
 
+#include "event_data.h"
+#include "data/nuzlocke.h"
+
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
 struct EvoInfo
@@ -548,7 +551,7 @@ static void CB2_TradeEvolutionSceneUpdate(void)
 static void CreateShedinja(u16 preEvoSpecies, struct Pokemon *mon)
 {
     u32 data = 0;
-    if (gEvolutionTable[preEvoSpecies][0].method == EVO_LEVEL_NINJASK && gPlayerPartyCount < PARTY_SIZE)
+    if (gEvolutionTable[preEvoSpecies][0].method == EVO_LEVEL_NINJASK && gPlayerPartyCount < PARTY_SIZE && FlagGet(FLAG_ALLOW_SHEDINJA) && FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]))
     {
         s32 i;
         struct Pokemon *shedinja = &gPlayerParty[gPlayerPartyCount];
