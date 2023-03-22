@@ -546,6 +546,8 @@ static void Task_HandleConfirmStarterInput(u8 taskId)
         gSpecialVar_Result = gTasks[taskId].tStarterSelection;
         ResetAllPicSprites();
         SetMainCallback2(gMain.savedCallback);
+        if (FlagGet(FLAG_COUNT_GIFTS_AS_ENCOUNTERS))
+            FlagSet(FLAG_ENCOUNTERED_ROUTE_101);
         break;
     case 1:  // NO
     case MENU_B_PRESSED:
