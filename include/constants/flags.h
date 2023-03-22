@@ -1217,99 +1217,101 @@
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
-#define FLAG_UNUSED_0x493                                           0x493 // Unused Flag
-#define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
-#define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
-#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
-#define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
-#define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
-#define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
-#define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
-#define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
-#define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag
-#define FLAG_UNUSED_0x49D                                           0x49D // Unused Flag
-#define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag
-#define FLAG_UNUSED_0x49F                                           0x49F // Unused Flag
-#define FLAG_UNUSED_0x4A0                                           0x4A0 // Unused Flag
-#define FLAG_UNUSED_0x4A1                                           0x4A1 // Unused Flag
-#define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
-#define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
-#define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
-#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
-#define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
-#define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
-#define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
-#define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag
-#define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag
-#define FLAG_UNUSED_0x4AB                                           0x4AB // Unused Flag
-#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused Flag
-#define FLAG_UNUSED_0x4AD                                           0x4AD // Unused Flag
-#define FLAG_UNUSED_0x4AE                                           0x4AE // Unused Flag
-#define FLAG_UNUSED_0x4AF                                           0x4AF // Unused Flag
-#define FLAG_UNUSED_0x4B0                                           0x4B0 // Unused Flag
-#define FLAG_UNUSED_0x4B1                                           0x4B1 // Unused Flag
-#define FLAG_UNUSED_0x4B2                                           0x4B2 // Unused Flag
-#define FLAG_UNUSED_0x4B3                                           0x4B3 // Unused Flag
-#define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag
-#define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag
-#define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag
-#define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag
-#define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag
-#define FLAG_UNUSED_0x4B9                                           0x4B9 // Unused Flag
-#define FLAG_UNUSED_0x4BA                                           0x4BA // Unused Flag
-#define FLAG_UNUSED_0x4BB                                           0x4BB // Unused Flag
-#define FLAG_UNUSED_0x4BC                                           0x4BC // Unused Flag
-#define FLAG_UNUSED_0x4BD                                           0x4BD // Unused Flag
-#define FLAG_UNUSED_0x4BE                                           0x4BE // Unused Flag
-#define FLAG_UNUSED_0x4BF                                           0x4BF // Unused Flag
-#define FLAG_UNUSED_0x4C0                                           0x4C0 // Unused Flag
-#define FLAG_UNUSED_0x4C1                                           0x4C1 // Unused Flag
-#define FLAG_UNUSED_0x4C2                                           0x4C2 // Unused Flag
-#define FLAG_UNUSED_0x4C3                                           0x4C3 // Unused Flag
-#define FLAG_UNUSED_0x4C4                                           0x4C4 // Unused Flag
-#define FLAG_UNUSED_0x4C5                                           0x4C5 // Unused Flag
-#define FLAG_UNUSED_0x4C6                                           0x4C6 // Unused Flag
-#define FLAG_UNUSED_0x4C7                                           0x4C7 // Unused Flag
-#define FLAG_UNUSED_0x4C8                                           0x4C8 // Unused Flag
-#define FLAG_UNUSED_0x4C9                                           0x4C9 // Unused Flag
-#define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
-#define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
-#define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
-#define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
-#define FLAG_UNUSED_0x4CE                                           0x4CE // Unused Flag
-#define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag
-#define FLAG_UNUSED_0x4D0                                           0x4D0 // Unused Flag
-#define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
-#define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
-#define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag
-#define FLAG_UNUSED_0x4D4                                           0x4D4 // Unused Flag
-#define FLAG_UNUSED_0x4D5                                           0x4D5 // Unused Flag
-#define FLAG_UNUSED_0x4D6                                           0x4D6 // Unused Flag
-#define FLAG_UNUSED_0x4D7                                           0x4D7 // Unused Flag
-#define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
-#define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
-#define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
-#define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
-#define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
-#define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
-#define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
-#define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
-#define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
-#define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
-#define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
-#define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
-#define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
-#define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
-#define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
-#define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
-#define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
-#define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
-#define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
-#define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
-#define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
-#define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
-#define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
-#define FLAG_UNUSED_0x4EF                                           0x4EF // Unused Flag
+#define ENCOUNTER_FLAGS_START                                       0x493
+#define FLAG_ENCOUNTERED_LITTLEROOT_TOWN                            (ENCOUNTER_FLAGS_START + 0x00)
+#define FLAG_ENCOUNTERED_OLDALE_TOWN                                (ENCOUNTER_FLAGS_START + 0x01)
+#define FLAG_ENCOUNTERED_DEWFORD_TOWN                               (ENCOUNTER_FLAGS_START + 0x02)
+#define FLAG_ENCOUNTERED_LAVARIDGE_TOWN                             (ENCOUNTER_FLAGS_START + 0x03)
+#define FLAG_ENCOUNTERED_FALLARBOR_TOWN                             (ENCOUNTER_FLAGS_START + 0x04)
+#define FLAG_ENCOUNTERED_VERDANTURF_TOWN                            (ENCOUNTER_FLAGS_START + 0x05)
+#define FLAG_ENCOUNTERED_PACIFIDLOG_TOWN                            (ENCOUNTER_FLAGS_START + 0x06)
+#define FLAG_ENCOUNTERED_PETALBURG_CITY                             (ENCOUNTER_FLAGS_START + 0x07)
+#define FLAG_ENCOUNTERED_SLATEPORT_CITY                             (ENCOUNTER_FLAGS_START + 0x08)
+#define FLAG_ENCOUNTERED_MAUVILLE_CITY                              (ENCOUNTER_FLAGS_START + 0x09)
+#define FLAG_ENCOUNTERED_RUSTBORO_CITY                              (ENCOUNTER_FLAGS_START + 0x0A)
+#define FLAG_ENCOUNTERED_FORTREE_CITY                               (ENCOUNTER_FLAGS_START + 0x0B)
+#define FLAG_ENCOUNTERED_LILYCOVE_CITY                              (ENCOUNTER_FLAGS_START + 0x0C)
+#define FLAG_ENCOUNTERED_MOSSDEEP_CITY                              (ENCOUNTER_FLAGS_START + 0x0D)
+#define FLAG_ENCOUNTERED_SOOTOPOLIS_CITY                            (ENCOUNTER_FLAGS_START + 0x0E)
+#define FLAG_ENCOUNTERED_EVER_GRANDE_CITY                           (ENCOUNTER_FLAGS_START + 0x0F)
+#define FLAG_ENCOUNTERED_ROUTE_101                                  (ENCOUNTER_FLAGS_START + 0x10)
+#define FLAG_ENCOUNTERED_ROUTE_102                                  (ENCOUNTER_FLAGS_START + 0x11)
+#define FLAG_ENCOUNTERED_ROUTE_103                                  (ENCOUNTER_FLAGS_START + 0x12)
+#define FLAG_ENCOUNTERED_ROUTE_104                                  (ENCOUNTER_FLAGS_START + 0x13)
+#define FLAG_ENCOUNTERED_ROUTE_105                                  (ENCOUNTER_FLAGS_START + 0x14)
+#define FLAG_ENCOUNTERED_ROUTE_106                                  (ENCOUNTER_FLAGS_START + 0x15)
+#define FLAG_ENCOUNTERED_ROUTE_107                                  (ENCOUNTER_FLAGS_START + 0x16)
+#define FLAG_ENCOUNTERED_ROUTE_108                                  (ENCOUNTER_FLAGS_START + 0x17)
+#define FLAG_ENCOUNTERED_ROUTE_109                                  (ENCOUNTER_FLAGS_START + 0x18)
+#define FLAG_ENCOUNTERED_ROUTE_110                                  (ENCOUNTER_FLAGS_START + 0x19)
+#define FLAG_ENCOUNTERED_ROUTE_111                                  (ENCOUNTER_FLAGS_START + 0x1A)
+#define FLAG_ENCOUNTERED_ROUTE_112                                  (ENCOUNTER_FLAGS_START + 0x1B)
+#define FLAG_ENCOUNTERED_ROUTE_113                                  (ENCOUNTER_FLAGS_START + 0x1C)
+#define FLAG_ENCOUNTERED_ROUTE_114                                  (ENCOUNTER_FLAGS_START + 0x1D)
+#define FLAG_ENCOUNTERED_ROUTE_115                                  (ENCOUNTER_FLAGS_START + 0x1E)
+#define FLAG_ENCOUNTERED_ROUTE_116                                  (ENCOUNTER_FLAGS_START + 0x1F)
+#define FLAG_ENCOUNTERED_ROUTE_117                                  (ENCOUNTER_FLAGS_START + 0x20)
+#define FLAG_ENCOUNTERED_ROUTE_118                                  (ENCOUNTER_FLAGS_START + 0x21)
+#define FLAG_ENCOUNTERED_ROUTE_119                                  (ENCOUNTER_FLAGS_START + 0x22)
+#define FLAG_ENCOUNTERED_ROUTE_120                                  (ENCOUNTER_FLAGS_START + 0x23)
+#define FLAG_ENCOUNTERED_ROUTE_121                                  (ENCOUNTER_FLAGS_START + 0x24)
+#define FLAG_ENCOUNTERED_ROUTE_122                                  (ENCOUNTER_FLAGS_START + 0x25)
+#define FLAG_ENCOUNTERED_ROUTE_123                                  (ENCOUNTER_FLAGS_START + 0x26)
+#define FLAG_ENCOUNTERED_ROUTE_124                                  (ENCOUNTER_FLAGS_START + 0x27)
+#define FLAG_ENCOUNTERED_ROUTE_125                                  (ENCOUNTER_FLAGS_START + 0x28)
+#define FLAG_ENCOUNTERED_ROUTE_126                                  (ENCOUNTER_FLAGS_START + 0x29)
+#define FLAG_ENCOUNTERED_ROUTE_127                                  (ENCOUNTER_FLAGS_START + 0x2A)
+#define FLAG_ENCOUNTERED_ROUTE_128                                  (ENCOUNTER_FLAGS_START + 0x2B)
+#define FLAG_ENCOUNTERED_ROUTE_129                                  (ENCOUNTER_FLAGS_START + 0x2C)
+#define FLAG_ENCOUNTERED_ROUTE_130                                  (ENCOUNTER_FLAGS_START + 0x2D)
+#define FLAG_ENCOUNTERED_ROUTE_131                                  (ENCOUNTER_FLAGS_START + 0x2E)
+#define FLAG_ENCOUNTERED_ROUTE_132                                  (ENCOUNTER_FLAGS_START + 0x2F)
+#define FLAG_ENCOUNTERED_ROUTE_133                                  (ENCOUNTER_FLAGS_START + 0x30)
+#define FLAG_ENCOUNTERED_ROUTE_134                                  (ENCOUNTER_FLAGS_START + 0x31)
+#define FLAG_ENCOUNTERED_UNDERWATER                                 (ENCOUNTER_FLAGS_START + 0x32)
+#define FLAG_ENCOUNTERED_GRANITE_CAVE                               (ENCOUNTER_FLAGS_START + 0x33)
+#define FLAG_ENCOUNTERED_MT_CHIMNEY                                 (ENCOUNTER_FLAGS_START + 0x34)
+#define FLAG_ENCOUNTERED_SAFARI_ZONE                                (ENCOUNTER_FLAGS_START + 0x35)
+#define FLAG_ENCOUNTERED_BATTLE_FRONTIER                            (ENCOUNTER_FLAGS_START + 0x36)
+#define FLAG_ENCOUNTERED_PETALBURG_WOODS                            (ENCOUNTER_FLAGS_START + 0x37)
+#define FLAG_ENCOUNTERED_RUSTURF_TUNNEL                             (ENCOUNTER_FLAGS_START + 0x38)
+#define FLAG_ENCOUNTERED_ABANDONED_SHIP                             (ENCOUNTER_FLAGS_START + 0x39)
+#define FLAG_ENCOUNTERED_NEW_MAUVILLE                               (ENCOUNTER_FLAGS_START + 0x3A)
+#define FLAG_ENCOUNTERED_METEOR_FALLS                               (ENCOUNTER_FLAGS_START + 0x3B)
+#define FLAG_ENCOUNTERED_MT_PYRE                                    (ENCOUNTER_FLAGS_START + 0x3C)
+#define FLAG_ENCOUNTERED_SHOAL_CAVE                                 (ENCOUNTER_FLAGS_START + 0x3D)
+#define FLAG_ENCOUNTERED_SEAFLOOR_CAVERN                            (ENCOUNTER_FLAGS_START + 0x3E)
+#define FLAG_ENCOUNTERED_VICTORY_ROAD                               (ENCOUNTER_FLAGS_START + 0x3F)
+#define FLAG_ENCOUNTERED_MIRAGE_ISLAND                              (ENCOUNTER_FLAGS_START + 0x40)
+#define FLAG_ENCOUNTERED_CAVE_OF_ORIGIN                             (ENCOUNTER_FLAGS_START + 0x41)
+#define FLAG_ENCOUNTERED_SOUTHERN_ISLAND                            (ENCOUNTER_FLAGS_START + 0x42)
+#define FLAG_ENCOUNTERED_FIERY_PATH                                 (ENCOUNTER_FLAGS_START + 0x43)
+#define FLAG_ENCOUNTERED_JAGGED_PASS                                (ENCOUNTER_FLAGS_START + 0x44)
+#define FLAG_ENCOUNTERED_SEALED_CHAMBER                             (ENCOUNTER_FLAGS_START + 0x45)
+#define FLAG_ENCOUNTERED_SCORCHED_SLAB                              (ENCOUNTER_FLAGS_START + 0x46)
+#define FLAG_ENCOUNTERED_ISLAND_CAVE                                (ENCOUNTER_FLAGS_START + 0x47)
+#define FLAG_ENCOUNTERED_DESERT_RUINS                               (ENCOUNTER_FLAGS_START + 0x48)
+#define FLAG_ENCOUNTERED_ANCIENT_TOMB                               (ENCOUNTER_FLAGS_START + 0x49)
+#define FLAG_ENCOUNTERED_SKY_PILLAR                                 (ENCOUNTER_FLAGS_START + 0x4A)
+#define FLAG_ENCOUNTERED_SECRET_BASE                                (ENCOUNTER_FLAGS_START + 0x4B)
+#define FLAG_ENCOUNTERED_AQUA_HIDEOUT                               (ENCOUNTER_FLAGS_START + 0x4C)
+#define FLAG_ENCOUNTERED_MAGMA_HIDEOUT                              (ENCOUNTER_FLAGS_START + 0x4D)
+#define FLAG_ENCOUNTERED_MIRAGE_TOWER                               (ENCOUNTER_FLAGS_START + 0x4E)
+#define FLAG_ENCOUNTERED_BIRTH_ISLAND                               (ENCOUNTER_FLAGS_START + 0x4F)
+#define FLAG_ENCOUNTERED_FARAWAY_ISLAND                             (ENCOUNTER_FLAGS_START + 0x50)
+#define FLAG_ENCOUNTERED_ARTISAN_CAVE                               (ENCOUNTER_FLAGS_START + 0x51)
+#define FLAG_ENCOUNTERED_MARINE_CAVE                                (ENCOUNTER_FLAGS_START + 0x52)
+#define FLAG_ENCOUNTERED_TERRA_CAVE                                 (ENCOUNTER_FLAGS_START + 0x53)
+#define FLAG_ENCOUNTERED_DESERT_UNDERPASS                           (ENCOUNTER_FLAGS_START + 0x54)
+#define FLAG_ENCOUNTERED_ALTERING_CAVE                              (ENCOUNTER_FLAGS_START + 0x55)
+#define FLAG_ENCOUNTERED_NAVEL_ROCK                                 (ENCOUNTER_FLAGS_START + 0x56)
+#define FLAG_ENCOUNTERED_TRAINER_HILL                               (ENCOUNTER_FLAGS_START + 0x57)
+
+#define FLAG_COUNT_GIFTS_AS_ENCOUNTERS                              0x4EB
+#define FLAG_COUNT_TRADES_AS_ENCOUNTERS                             0x4EC
+#define FLAG_DUPES_CLAUSE                                           0x4ED
+#define FLAG_SPECIES_CLAUSE                                         0x4EE
+#define FLAG_ALLOW_SHEDINJA                                         0x4EF
 
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0
 #define FLAG_DEFEATED_DEWFORD_GYM                                   0x4F1
@@ -1321,7 +1323,7 @@
 #define FLAG_DEFEATED_SOOTOPOLIS_GYM                                0x4F7
 #define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8
 
-#define FLAG_UNUSED_0x4F9                                           0x4F9 // Unused Flag
+#define FLAG_SET_NUZLOCKE_CLAUSES                                   0x4F9
 #define FLAG_UNUSED_0x4FA                                           0x4FA // Unused Flag
 
 #define FLAG_DEFEATED_ELITE_4_SIDNEY                                0x4FB
