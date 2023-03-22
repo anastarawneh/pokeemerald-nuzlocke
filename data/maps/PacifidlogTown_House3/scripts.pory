@@ -1,50 +1,50 @@
-NewPacifidlogTraderScript::
-	lock
+script NewPacifidlogTraderScript {
+    lock
 	faceplayer
-	goto_if_set FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED, PacifidlogTown_House3_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_HORSEA
-	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
-	copyvar VAR_0x8009, VAR_RESULT
-	msgbox PacifidlogTown_House3_Text_WillingToTradeIt, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, PacifidlogTown_House3_EventScript_DeclineTrade
-	goto_if_set FLAG_COUNT_TRADES_AS_ENCOUNTERS, NewPacifidlogTraderScript_3
-NewPacifidlogTraderScript_1:
-	special ChoosePartyMon
+	goto_if_set(FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED, PacifidlogTown_House3_EventScript_TradeCompleted)
+	setvar(VAR_0x8008, INGAME_TRADE_HORSEA)
+	copyvar(VAR_0x8004, VAR_0x8008)
+	specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+	copyvar(VAR_0x8009, VAR_RESULT)
+	msgbox(PacifidlogTown_House3_Text_WillingToTradeIt, MSGBOX_YESNO)
+	goto_if_eq(VAR_RESULT, NO, PacifidlogTown_House3_EventScript_DeclineTrade)
+    if (flag(FLAG_COUNT_TRADES_AS_ENCOUNTERS) && flag(FLAG_ENCOUNTERED_PACIFIDLOG_TOWN)) {
+        msgbox(CannotTradeHorseaText)
+        release
+        end
+    }
+	special(ChoosePartyMon)
 	waitstate
-	copyvar VAR_0x800A, VAR_0x8004
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, PacifidlogTown_House3_EventScript_DeclineTrade
-	copyvar VAR_0x8005, VAR_0x800A
-	specialvar VAR_RESULT, GetTradeSpecies
-	copyvar VAR_0x800B, VAR_RESULT
-	goto_if_ne VAR_RESULT, VAR_0x8009, PacifidlogTown_House3_EventScript_NotRequestedMon
-	copyvar VAR_0x8004, VAR_0x8008
-	copyvar VAR_0x8005, VAR_0x800A
-	special CreateInGameTradePokemon
-	special DoInGameTradeScene
+	copyvar(VAR_0x800A, VAR_0x8004)
+	goto_if_eq(VAR_0x8004, PARTY_NOTHING_CHOSEN, PacifidlogTown_House3_EventScript_DeclineTrade)
+	copyvar(VAR_0x8005, VAR_0x800A)
+	specialvar(VAR_RESULT, GetTradeSpecies)
+	copyvar(VAR_0x800B, VAR_RESULT)
+	goto_if_ne(VAR_RESULT, VAR_0x8009, PacifidlogTown_House3_EventScript_NotRequestedMon)
+	copyvar(VAR_0x8004, VAR_0x8008)
+	copyvar(VAR_0x8005, VAR_0x800A)
+	special(CreateInGameTradePokemon)
+	special(DoInGameTradeScene)
 	waitstate
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou, MSGBOX_DEFAULT
-	setflag FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED
-	goto_if_set FLAG_COUNT_TRADES_AS_ENCOUNTERS, NewPacifidlogTraderScript_7
-NewPacifidlogTraderScript_6:
+	bufferspeciesname(STR_VAR_1, VAR_0x8009)
+	msgbox(PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou, MSGBOX_DEFAULT)
+	setflag(FLAG_PACIFIDLOG_NPC_TRADE_COMPLETED)
+    if (flag(FLAG_COUNT_TRADES_AS_ENCOUNTERS)) {
+        setflag(FLAG_ENCOUNTERED_PACIFIDLOG_TOWN)
+    }
 	release
 	end
+}
 
-NewPacifidlogTraderScript_2:
-	msgbox CannotTradeHorseaText
-	release
-	end
+text CannotTradeHorseaText {
+    format(
+        "...\p"
+        "Hey, you already had an encounter here in PACIFIDLOG TOWN!\p"
+        "You're not allowed to have my HORSEA!"
+    )
+}
 
-NewPacifidlogTraderScript_3:
-	goto_if_set FLAG_ENCOUNTERED_PACIFIDLOG_TOWN, NewPacifidlogTraderScript_2
-	goto NewPacifidlogTraderScript_1
-
-NewPacifidlogTraderScript_7:
-	setflag FLAG_ENCOUNTERED_PACIFIDLOG_TOWN
-	goto NewPacifidlogTraderScript_6
-
-
+raw `
 PacifidlogTown_House3_MapScripts::
 	.byte 0
 
@@ -134,8 +134,5 @@ PacifidlogTown_House3_Text_IsThatAPokedex:
 	.string "POKéMON?\p"
 	.string "I wish I was like you.$"
 
-CannotTradeHorseaText::
-	.string "...\p"
-	.string "Hey, you already had an encounter here\n"
-	.string "in PACIFIDLOG TOWN!\p"
-	.string "You're not allowed to have my HORSEA!$"
+
+`

@@ -1,50 +1,50 @@
-NewFortreeTraderScript::
-	lock
+script NewFortreeTraderScript {
+    lock
 	faceplayer
-	goto_if_set FLAG_FORTREE_NPC_TRADE_COMPLETED, FortreeCity_House1_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_PLUSLE
-	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
-	copyvar VAR_0x8009, VAR_RESULT
-	msgbox FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, FortreeCity_House1_EventScript_DeclineTrade
-	goto_if_set FLAG_COUNT_TRADES_AS_ENCOUNTERS, NewFortreeTraderScript_3
-NewFortreeTraderScript_1:
-	special ChoosePartyMon
+	goto_if_set(FLAG_FORTREE_NPC_TRADE_COMPLETED, FortreeCity_House1_EventScript_TradeCompleted)
+	setvar(VAR_0x8008, INGAME_TRADE_PLUSLE)
+	copyvar(VAR_0x8004, VAR_0x8008)
+	specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+	copyvar(VAR_0x8009, VAR_RESULT)
+	msgbox(FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO)
+	goto_if_eq(VAR_RESULT, NO, FortreeCity_House1_EventScript_DeclineTrade)
+    if (flag(FLAG_COUNT_TRADES_AS_ENCOUNTERS) && flag(FLAG_ENCOUNTERED_FORTREE_CITY)) {
+        msgbox(CannotTradePlusleText)
+        release
+        end
+    }
+	special(ChoosePartyMon)
 	waitstate
-	copyvar VAR_0x800A, VAR_0x8004
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, FortreeCity_House1_EventScript_DeclineTrade
-	copyvar VAR_0x8005, VAR_0x800A
-	specialvar VAR_RESULT, GetTradeSpecies
-	copyvar VAR_0x800B, VAR_RESULT
-	goto_if_ne VAR_RESULT, VAR_0x8009, FortreeCity_House1_EventScript_NotRequestedMon
-	copyvar VAR_0x8004, VAR_0x8008
-	copyvar VAR_0x8005, VAR_0x800A
-	special CreateInGameTradePokemon
-	special DoInGameTradeScene
+	copyvar(VAR_0x800A, VAR_0x8004)
+	goto_if_eq(VAR_0x8004, PARTY_NOTHING_CHOSEN, FortreeCity_House1_EventScript_DeclineTrade)
+	copyvar(VAR_0x8005, VAR_0x800A)
+	specialvar(VAR_RESULT, GetTradeSpecies)
+	copyvar(VAR_0x800B, VAR_RESULT)
+	goto_if_ne(VAR_RESULT, VAR_0x8009, FortreeCity_House1_EventScript_NotRequestedMon)
+	copyvar(VAR_0x8004, VAR_0x8008)
+	copyvar(VAR_0x8005, VAR_0x800A)
+	special(CreateInGameTradePokemon)
+	special(DoInGameTradeScene)
 	waitstate
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox FortreeCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT
-	setflag FLAG_FORTREE_NPC_TRADE_COMPLETED
-	goto_if_set FLAG_COUNT_TRADES_AS_ENCOUNTERS, NewFortreeTraderScript_7
-NewFortreeTraderScript_6:
+	bufferspeciesname(STR_VAR_1, VAR_0x8009)
+	msgbox(FortreeCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT)
+	setflag(FLAG_FORTREE_NPC_TRADE_COMPLETED)
+    if (flag(FLAG_COUNT_TRADES_AS_ENCOUNTERS)) {
+        setflag(FLAG_ENCOUNTERED_FORTREE_CITY)
+    }
 	release
 	end
+}
 
-NewFortreeTraderScript_2:
-	msgbox CannotTradePlusleText
-	release
-	end
+text CannotTradePlusleText {
+    format(
+        "...\p"
+        "Hey, you already had an encounter here in FORTREE CITY!\p"
+        "You're not allowed to have my PLUSLE!"
+    )
+}
 
-NewFortreeTraderScript_3:
-	goto_if_set FLAG_ENCOUNTERED_FORTREE_CITY, NewFortreeTraderScript_2
-	goto NewFortreeTraderScript_1
-
-NewFortreeTraderScript_7:
-	setflag FLAG_ENCOUNTERED_FORTREE_CITY
-	goto NewFortreeTraderScript_6
-
-
+raw `
 FortreeCity_House1_MapScripts::
 	.byte 0
 
@@ -143,8 +143,5 @@ FortreeCity_House1_Text_TradingMemoriesWithOthers:
 FortreeCity_House1_Text_Zigzagoon:
 	.string "ZIGZAGOON: Gumomoh?$"
 
-CannotTradePlusleText::
-	.string "...\p"
-	.string "Hey, you already had an encounter here\n"
-	.string "in FORTREE CITY!\p"
-	.string "You're not allowed to have my PLUSLE!$"
+
+`
