@@ -272,6 +272,18 @@ EventScript_EggHatch::
 	releaseall
 	end
 
+EventScript_CannotHatchEgg::
+	lockall
+	msgbox Text_CannotHatchEgg, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Text_CannotHatchEgg:
+	.string "Your egg is about to hatch.\p"
+	.string "Unfortunately, you already had an\n"
+	.string "encounter here, so it will be delayed\l"
+	.string "until you enter a valid encounter area.$"
+
 Route117_Text_SeeWifeIfYoudLikeMeToRaiseMon:
 	.string "I'm the DAY-CARE MAN.\p"
 	.string "I help take care of the precious\n"

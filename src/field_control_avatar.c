@@ -35,6 +35,8 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 
+#include "data/nuzlocke.h"
+
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
 
@@ -553,8 +555,13 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
         }
         if (ShouldEggHatch())
         {
+            if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()])) {
+                ScriptContext_SetupScript(EventScript_CannotHatchEgg);
+                return TRUE;
+            }
             IncrementGameStat(GAME_STAT_HATCHED_EGGS);
             ScriptContext_SetupScript(EventScript_EggHatch);
+            FlagSet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]);
             return TRUE;
         }
         if (AbnormalWeatherHasExpired() == TRUE)
