@@ -1,109 +1,123 @@
-NewLeftTrigger::
+script NewLeftTrigger {
 	lockall
-	goto_if_set FLAG_SET_NUZLOCKE_CLAUSES, NewLeftTrigger_2
-	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft
-	waitmovement 0
-	msgbox NuzlockeClausesInfoText, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinPushPlayerFromRoute
-	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute
-	waitmovement 0
-NewLeftTrigger_1:
-	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinReturnLeft
-	waitmovement 0
+	if (flag(FLAG_SET_NUZLOCKE_CLAUSES)) {
+		applymovement(LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft)
+		waitmovement(0)
+		call(LittlerootTown_EventScript_DangerousWithoutPokemon)
+	} else {
+		applymovement(LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft)
+		waitmovement(0)
+		msgbox(NuzlockeClausesInfoText, MSGBOX_DEFAULT)
+		closemessage
+		applymovement(LOCALID_TWIN, LittlerootTown_Movement_TwinPushPlayerFromRoute)
+		applymovement(OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute)
+		waitmovement(0)
+	}
+	applymovement(LOCALID_TWIN, LittlerootTown_Movement_TwinReturnLeft)
+	waitmovement(0)
 	releaseall
 	end
+}
 
-NewLeftTrigger_2:
-	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft
-	waitmovement 0
-	call LittlerootTown_EventScript_DangerousWithoutPokemon
-	goto NewLeftTrigger_1
-
-
-NewTwinScript::
+script NewTwinScript {
 	lock
 	faceplayer
-	goto_if_set FLAG_ADVENTURE_STARTED, LittlerootTown_EventScript_GoodLuck
-	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_YouSavedBirch
-	goto_if_set FLAG_SET_NUZLOCKE_CLAUSES, NewTwinScript_2
-	msgbox NuzlockeClausesInfoText, MSGBOX_DEFAULT
-NewTwinScript_1:
+	goto_if_set(FLAG_ADVENTURE_STARTED, LittlerootTown_EventScript_GoodLuck)
+	goto_if_set(FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_YouSavedBirch)
+	if (flag(FLAG_SET_NUZLOCKE_CLAUSES)) {
+		goto_if_ne(VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_GoSaveBirch)
+		msgbox(LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT)
+	} else {
+		msgbox(NuzlockeClausesInfoText, MSGBOX_DEFAULT)
+	}
 	release
 	end
+}
 
-NewTwinScript_2:
-	goto_if_ne VAR_LITTLEROOT_TOWN_STATE, 0, LittlerootTown_EventScript_GoSaveBirch
-	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
-	goto NewTwinScript_1
-
-
-NuzlockeClausesInfoScript::
+script NuzlockeClausesInfoScript {
 	lock
 	faceplayer
-	msgbox NuzlockeClausesInfoText
+	msgbox(NuzlockeClausesInfoText)
 	closemessage
-	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinPushPlayerFromRoute
-	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute
-	waitmovement 0
+	applymovement(LOCALID_TWIN, LittlerootTown_Movement_TwinPushPlayerFromRoute)
+	applymovement(OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute)
+	waitmovement(0)
 	return
+}
 
+text NuzlockeClausesInfoText {
+	format("You should talk to the man in the blue shirt before you start your adventure.")
+}
 
-ChooseNuzlockeClausesScript::
+script ChooseNuzlockeClausesScript {
 	lock
 	faceplayer
-	msgbox ChooseNuzlockeClausesText
-	msgbox GiftClauseText, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq ChooseNuzlockeClausesScript_2
-	clearflag FLAG_COUNT_GIFTS_AS_ENCOUNTERS
-ChooseNuzlockeClausesScript_1:
-	msgbox TradeClauseText, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq ChooseNuzlockeClausesScript_6
-	clearflag FLAG_COUNT_TRADES_AS_ENCOUNTERS
-ChooseNuzlockeClausesScript_5:
-	msgbox DupesClauseText, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq ChooseNuzlockeClausesScript_10
-	clearflag FLAG_DUPES_CLAUSE
-ChooseNuzlockeClausesScript_9:
-	msgbox SpeciesClauseText, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq ChooseNuzlockeClausesScript_14
-	clearflag FLAG_SPECIES_CLAUSE
-ChooseNuzlockeClausesScript_13:
-	msgbox ShedinjaClauseText, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq ChooseNuzlockeClausesScript_18
-	clearflag FLAG_ALLOW_SHEDINJA
-ChooseNuzlockeClausesScript_17:
-	setflag FLAG_SET_NUZLOCKE_CLAUSES
-	msgbox NuzlockeClausesDoneText
+	msgbox(ChooseNuzlockeClausesText)
+	msgbox(GiftClauseText, MSGBOX_YESNO)
+	if (var(VAR_RESULT) == 1) {
+		setflag(FLAG_COUNT_GIFTS_AS_ENCOUNTERS)
+	} else {
+		clearflag(FLAG_COUNT_GIFTS_AS_ENCOUNTERS)
+	}
+	msgbox(TradeClauseText, MSGBOX_YESNO)
+	if (var(VAR_RESULT) == 1) {
+		setflag(FLAG_COUNT_TRADES_AS_ENCOUNTERS)
+	} else {
+		clearflag(FLAG_COUNT_TRADES_AS_ENCOUNTERS)
+	}
+	msgbox(DupesClauseText, MSGBOX_YESNO)
+	if (var(VAR_RESULT) == 1) {
+		setflag(FLAG_DUPES_CLAUSE)
+	} else {
+		clearflag(FLAG_DUPES_CLAUSE)
+	}
+	msgbox(SpeciesClauseText, MSGBOX_YESNO)
+	if (var(VAR_RESULT) == 1) {
+		setflag(FLAG_SPECIES_CLAUSE)
+	} else {
+		clearflag(FLAG_SPECIES_CLAUSE)
+	}
+	msgbox(ShedinjaClauseText, MSGBOX_YESNO)
+	if (var(VAR_RESULT) == 1) {
+		setflag(FLAG_ALLOW_SHEDINJA)
+	} else {
+		clearflag(FLAG_ALLOW_SHEDINJA)
+	}
+	setflag(FLAG_SET_NUZLOCKE_CLAUSES)
+	msgbox(NuzlockeClausesDoneText)
 	release
 	end
+}
 
-ChooseNuzlockeClausesScript_2:
-	setflag FLAG_COUNT_GIFTS_AS_ENCOUNTERS
-	goto ChooseNuzlockeClausesScript_1
+text ChooseNuzlockeClausesText {
+	format("Hi, I have a few questions about your nuzlocke.")
+}
 
-ChooseNuzlockeClausesScript_6:
-	setflag FLAG_COUNT_TRADES_AS_ENCOUNTERS
-	goto ChooseNuzlockeClausesScript_5
+text GiftClauseText {
+	format("Do you count gifts as encounters?")
+}
 
-ChooseNuzlockeClausesScript_10:
-	setflag FLAG_DUPES_CLAUSE
-	goto ChooseNuzlockeClausesScript_9
+text TradeClauseText {
+	format("Do you count trades as encounters?")
+}
 
-ChooseNuzlockeClausesScript_14:
-	setflag FLAG_SPECIES_CLAUSE
-	goto ChooseNuzlockeClausesScript_13
+text DupesClauseText {
+	format("Do you play with Dupes Clause?")
+}
 
-ChooseNuzlockeClausesScript_18:
-	setflag FLAG_ALLOW_SHEDINJA
-	goto ChooseNuzlockeClausesScript_17
+text SpeciesClauseText {
+	format("Do you play with Species Clause?")
+}
 
+text ShedinjaClauseText {
+	format("Do you allow Shedinja?")
+}
 
+text NuzlockeClausesDoneText {
+	format("Good to know, your preferences have been saved. Good luck!")
+}
+
+raw `
 .set LOCALID_TWIN, 1
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
@@ -1125,29 +1139,4 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
-NuzlockeClausesInfoText::
-	.string "You should talk to the man in the blue\n"
-	.string "shirt before you start your adventure.$"
-
-ChooseNuzlockeClausesText::
-	.string "Hi, I have a few questions about your\n"
-	.string "nuzlocke.$"
-
-GiftClauseText::
-	.string "Do you count gifts as encounters?$"
-
-TradeClauseText::
-	.string "Do you count trades as encounters?$"
-
-DupesClauseText::
-	.string "Do you play with Dupes Clause?$"
-
-SpeciesClauseText::
-	.string "Do you play with Species Clause?$"
-
-ShedinjaClauseText::
-	.string "Do you allow Shedinja?$"
-
-NuzlockeClausesDoneText::
-	.string "Good to know, your preferences have\n"
-	.string "been saved. Good luck!$"
+`
