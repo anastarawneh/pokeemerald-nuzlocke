@@ -46,6 +46,8 @@ gBattlescriptsForSafariActions::
 	.4byte BattleScript_ActionGetNear
 	.4byte BattleScript_ActionThrowPokeblock
 	.4byte BattleScript_ActionWallyThrow
+	.4byte BattleScript_ActionCannotEncounter
+	.4byte BattleScript_ActionDuplicateEncounter
 
 BattleScript_BallThrow::
 	jumpifword CMP_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_WALLY_TUTORIAL, BattleScript_BallThrowByWally
@@ -198,5 +200,15 @@ BattleScript_ActionWallyThrow:
 	trainerslidein BS_TARGET
 	waitstate
 	printstring STRINGID_YOUTHROWABALLNOWRIGHT
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_ActionCannotEncounter:
+	printstring STRINGID_CANNOTENCOUNTERINSAFARI
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_ActionDuplicateEncounter:
+	printstring STRINGID_DUPLICATEENCOUNTERINSAFARI
 	waitmessage B_WAIT_TIME_LONG
 	end2

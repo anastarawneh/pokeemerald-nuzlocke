@@ -12,6 +12,9 @@
 #include "constants/game_stat.h"
 #include "field_screen_effect.h"
 
+#include "data/nuzlocke.h"
+#include "pokedex.h"
+
 struct PokeblockFeeder
 {
     /*0x00*/ s16 x;
@@ -116,6 +119,9 @@ void CB2_EndSafariBattle(void)
         ScriptContext_Stop();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
+
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) && !((FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT))))
+        FlagSet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]);
 }
 
 static void ClearPokeblockFeeder(u8 index)

@@ -36,6 +36,10 @@
 #include "constants/species.h"
 #include "constants/weather.h"
 
+#include "data/nuzlocke.h"
+#include "pokedex.h"
+#include "overworld.h"
+
 /*
 NOTE: The data and functions in this file up until (but not including) sSoundMovesTable
 are actually part of battle_main.c. They needed to be moved to this file in order to
@@ -545,6 +549,25 @@ void HandleAction_WatchesCarefully(void)
 
 void HandleAction_SafariZoneBallThrow(void)
 {
+    if (!IsMonShiny(&gEnemyParty[0])) {
+        if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()])) {
+            gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+            gBattle_BG0_X = 0;
+            gBattle_BG0_Y = 0;
+            gBattlescriptCurrInstr = gBattlescriptsForSafariActions[4];
+            gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+            return;
+        }
+        else if (FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) {
+            gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+            gBattle_BG0_X = 0;
+            gBattle_BG0_Y = 0;
+            gBattlescriptCurrInstr = gBattlescriptsForSafariActions[5];
+            gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+            return;
+        }
+    }
+            
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
