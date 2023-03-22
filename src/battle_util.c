@@ -39,6 +39,7 @@
 #include "data/nuzlocke.h"
 #include "pokedex.h"
 #include "overworld.h"
+#include "main.h"
 
 /*
 NOTE: The data and functions in this file up until (but not including) sSoundMovesTable
@@ -550,6 +551,22 @@ void HandleAction_WatchesCarefully(void)
 void HandleAction_SafariZoneBallThrow(void)
 {
     if (!IsMonShiny(&gEnemyParty[0])) {
+        bool8 isDupeSpecies = FALSE;
+        for (int i = 0; i < 200; i++) {
+            for (int j = 0; j < sizeof(i); j++) {
+                if (j == GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)) {
+                    for (int k = 0; k < sizeof(i); k++) {
+                        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(k, MON_DATA_SPECIES)))) {
+                            isDupeSpecies = TRUE;
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+            if (isDupeSpecies) break;
+        }
+
         if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]) && !(gMain.heldKeys & R_BUTTON)) {
             gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
             gBattle_BG0_X = 0;
@@ -558,7 +575,7 @@ void HandleAction_SafariZoneBallThrow(void)
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
             return;
         }
-        else if (FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT) && !(gMain.heldKeys & R_BUTTON)) {
+        else if ((FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT) || (FlagGet(FLAG_SPECIES_CLAUSE) && isDupeSpecies)) && !(gMain.heldKeys & R_BUTTON)) {
             gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
             gBattle_BG0_X = 0;
             gBattle_BG0_Y = 0;

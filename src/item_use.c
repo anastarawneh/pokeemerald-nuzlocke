@@ -945,12 +945,28 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 void ItemUseInBattle_PokeBall(u8 taskId)
 {
     if (!IsMonShiny(&gEnemyParty[0]) && !(gMain.heldKeys & R_BUTTON)) {
+        bool8 isDupeSpecies = FALSE;
+        for (int i = 0; i < 200; i++) {
+            for (int j = 0; j < sizeof(i); j++) {
+                if (j == GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)) {
+                    for (int k = 0; k < sizeof(i); k++) {
+                        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(k, MON_DATA_SPECIES)))) {
+                            isDupeSpecies = TRUE;
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+            if (isDupeSpecies) break;
+        }
+
         if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]))
         {
             DisplayItemMessage(taskId, FONT_NORMAL, gText_AlreadyEncountered, CloseItemMessage);
             return;
         }
-        else if (FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) {
+        else if (FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT) || (FlagGet(FLAG_SPECIES_CLAUSE) && isDupeSpecies)) {
             DisplayItemMessage(taskId, FONT_NORMAL, gText_DupeEncounter, CloseItemMessage);
             return;
         }
