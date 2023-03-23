@@ -603,6 +603,11 @@ void StartRegiBattle(void)
 
 static void CB2_EndWildBattle(void)
 {
+    int i;
+    int j;
+    int k;
+    bool8 isDupeSpecies = FALSE;
+    
     CpuFill16(0, (void *)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
 
@@ -616,15 +621,14 @@ static void CB2_EndWildBattle(void)
         gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
     }
 
-    bool8 isDupeSpecies = FALSE;
-    for (int i = 0; i < 200; i++) {
-        for (int j = 0; j < sizeof(i); j++) {
+    for (i = 0; i < 200; i++) {
+        for (j = 0; j < sizeof(i); j++) {
             if (j == GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)) {
-                for (int k = 0; k < sizeof(i); k++) {
-                    if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(k, MON_DATA_SPECIES)))) {
+                for (k = 0; k < sizeof(i); k++) {
+                    if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(k, MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) {
                         isDupeSpecies = TRUE;
-                        break;
                     }
+                    if (isDupeSpecies) break;
                 }
             }
             break;

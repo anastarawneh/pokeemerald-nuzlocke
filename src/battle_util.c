@@ -550,13 +550,16 @@ void HandleAction_WatchesCarefully(void)
 
 void HandleAction_SafariZoneBallThrow(void)
 {
-    if (!IsMonShiny(&gEnemyParty[0])) {
-        bool8 isDupeSpecies = FALSE;
-        for (int i = 0; i < 200; i++) {
-            for (int j = 0; j < sizeof(i); j++) {
+    int i;
+    int j;
+    int k;
+    bool8 isDupeSpecies = FALSE;
+    if (!IsMonShiny(&gEnemyParty[0]) && !(gMain.heldKeys & R_BUTTON)) {
+        for (i = 0; i < 200; i++) {
+            for (j = 0; j < sizeof(i); j++) {
                 if (j == GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)) {
-                    for (int k = 0; k < sizeof(i); k++) {
-                        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(k, MON_DATA_SPECIES)))) {
+                    for (k = 0; k < sizeof(i); k++) {
+                        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(k, MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) {
                             isDupeSpecies = TRUE;
                             break;
                         }
@@ -567,7 +570,7 @@ void HandleAction_SafariZoneBallThrow(void)
             if (isDupeSpecies) break;
         }
 
-        if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()]) && !(gMain.heldKeys & R_BUTTON)) {
+        if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()])) {
             gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
             gBattle_BG0_X = 0;
             gBattle_BG0_Y = 0;
@@ -575,7 +578,7 @@ void HandleAction_SafariZoneBallThrow(void)
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
             return;
         }
-        else if ((FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT) || (FlagGet(FLAG_SPECIES_CLAUSE) && isDupeSpecies)) && !(gMain.heldKeys & R_BUTTON)) {
+        else if ((FlagGet(FLAG_DUPES_CLAUSE) && GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) || (FlagGet(FLAG_SPECIES_CLAUSE) && isDupeSpecies)) {
             gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
             gBattle_BG0_X = 0;
             gBattle_BG0_Y = 0;
