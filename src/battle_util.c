@@ -548,26 +548,48 @@ void HandleAction_WatchesCarefully(void)
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 
-void HandleAction_SafariZoneBallThrow(void)
+extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
+
+static u16 GetEggSpecies(u16 species)
+{
+    int i, j, k;
+    bool8 found;
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        found = FALSE;
+        for (j = 1; j < NUM_SPECIES; j++)
+        {
+            for (k = 0; k < EVOS_PER_MON; k++)
+            {
+                if (gEvolutionTable[j][k].targetSpecies == species)
+                {
+                    species = j;
+                    found = TRUE;
+                    break;
+                }
+            }
+
+            if (found)
+                break;
+        }
+
+        if (j == NUM_SPECIES)
+            break;
+    }
+
+    return species;
+}void HandleAction_SafariZoneBallThrow(void)
 {
     int i;
-    int j;
-    int k;
     bool8 isDupeSpecies = FALSE;
     if (!IsMonShiny(&gEnemyParty[0]) && !(gMain.heldKeys & R_BUTTON)) {
-        for (i = 0; i < 200; i++) {
-            for (j = 0; j < sizeof(i); j++) {
-                if (j == GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)) {
-                    for (k = 0; k < sizeof(i); k++) {
-                        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(k, MON_DATA_SPECIES)), FLAG_GET_CAUGHT)) {
-                            isDupeSpecies = TRUE;
-                            break;
-                        }
-                    }
+        for (i = 0; i < NUM_SPECIES; i++) {
+            if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(i), FLAG_GET_CAUGHT)) {
+                if (GetEggSpecies(i) == GetEggSpecies(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES))) {
+                    isDupeSpecies = TRUE;
                 }
-                break;
             }
-            if (isDupeSpecies) break;
         }
 
         if (FlagGet(gEncounterFlagsTable[GetCurrentRegionMapSectionId()])) {
